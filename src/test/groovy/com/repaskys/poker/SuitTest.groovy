@@ -5,6 +5,11 @@ import groovy.util.GroovyTestCase
 import com.repaskys.poker.Suit
 
 class SuitTest extends GroovyTestCase {
+   void testStringAsEnum() {
+      def suit = "C" as Suit
+      assert suit.value == "clubs"
+   }
+
    void testClubs() {
       assert Suit.C.value == "clubs"
    }

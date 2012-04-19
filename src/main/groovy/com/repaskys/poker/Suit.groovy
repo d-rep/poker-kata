@@ -10,5 +10,4 @@ enum Suit {
    Suit(description) {
       value = description
    }
-
 }
