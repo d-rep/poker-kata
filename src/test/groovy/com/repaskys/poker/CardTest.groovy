@@ -19,4 +19,12 @@ class CardTest extends GroovyTestCase {
       assert card.suit.value == "clubs"
    }
 
+   void testDeck() {
+      def deck = Card.DECK
+      assert deck.size() == 52
+      assert deck.get("2C").value == "2"
+      assert deck.get("2C").suit.value == "clubs"
+      assert deck.get("2C").suit == Suit.C
+   }
+
 }
