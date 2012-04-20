@@ -11,14 +11,15 @@ class Card {
    public static final Map<String, Card> DECK
 
    static {
-      DECK = [:]
+      def deck = [:]
       CARD_VALUES.each{ cardValue ->
          Suit.each { suit ->
             String suitCharacter = suit.toString()
             String cardAbbr = cardValue + suitCharacter
-            DECK[cardAbbr] = Card.create(cardAbbr)
+            deck[cardAbbr] = Card.create(cardAbbr)
          }
       }
+      DECK = deck.asImmutable()
    }
 
    /**
