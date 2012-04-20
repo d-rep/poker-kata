@@ -11,12 +11,15 @@ class CardTest extends GroovyTestCase {
       def card = Card.create("2H")
       assert card.value == "2"
       assert card.suit.value == "hearts"
+      // a duece has the lowest rank
+      assert card.rank == 0
    }
 
    void testNineOfClubs() {
       def card = Card.create("9C")
       assert card.value == "9"
       assert card.suit.value == "clubs"
+      assert card.rank == 7
    }
 
    void testDeck() {
@@ -25,6 +28,7 @@ class CardTest extends GroovyTestCase {
       assert deck.get("2C").value == "2"
       assert deck.get("2C").suit.value == "clubs"
       assert deck.get("2C").suit == Suit.C
+      assert deck.get("2C").rank == 0
    }
 
 }

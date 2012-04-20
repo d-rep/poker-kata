@@ -25,12 +25,19 @@ class Card {
     * This is the face value of the card. 2-9, T for a "Ten", J for "Jack", Q for "Queen", K for "King", and A for "Ace."
     */
    String value
+
    Suit suit
+
+   /**
+    * The face value of the card, translated to a number, which can be used to determine straights and the high-card.
+    * (This can be unintuitive, since a card with a face value of "2" will have a rank of 0 because it's the lowest rank.)
+    */
+   Integer rank
 
    /**
     * This accepts a 2-character abbreviation of the card with the face value and then the suit, such as "2C" for the Two of Clubs.
     */
    public static Card create(String abbr) {
-      return new Card(value: abbr[0], suit: abbr[1])
+      return new Card(value: abbr[0], suit: abbr[1], rank: CARD_VALUES.indexOf(abbr[0]))
    }
 }
