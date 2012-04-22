@@ -30,4 +30,14 @@ class Hand extends ArrayList<Card> {
 
       return likeCards
    }
+
+   Pairs ofAKind() {
+      def likeCards = groupLikeCards()
+      def pairs = THREE_OF_A_KIND
+
+      if(likeCards.containsValue(4)) {
+         pairs = FOUR_OF_A_KIND
+      }
+      return pairs
+   }
 }
