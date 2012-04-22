@@ -45,14 +45,34 @@ class HandTest extends GroovyTestCase {
       assert ["2":2, "3":1, "4":1, "8":1] == hand.groupLikeCards()
    }
 
+   void testNoMatchingCardsOfAKind() {
+      def hand = [D."2C", D."3C", D."4C", D."5C", D."8D"] as Hand
+      assert NO_PAIRS == hand.ofAKind()
+   }
+
    void testFourOfAKind() {
       def hand = [D."2C", D."2S", D."2D", D."2H", D."8D"] as Hand
-      assert hand.ofAKind() == FOUR_OF_A_KIND
+      assert FOUR_OF_A_KIND == hand.ofAKind()
+   }
+
+   void testFullHouse() {
+      def hand = [D."2C", D."2S", D."3D", D."3H", D."3D"] as Hand
+      assert FULL_HOUSE == hand.ofAKind()
    }
 
    void testThreeOfAKind() {
       def hand = [D."2C", D."2S", D."2D", D."3H", D."8D"] as Hand
-      assert hand.ofAKind() == THREE_OF_A_KIND
+      assert THREE_OF_A_KIND == hand.ofAKind()
+   }
+
+   void testTwoPairs() {
+      def hand = [D."2C", D."2S", D."3D", D."3H", D."8D"] as Hand
+      assert TWO_PAIRS == hand.ofAKind()
+   }
+
+   void testOnePair() {
+      def hand = [D."2C", D."2S", D."3D", D."4H", D."8D"] as Hand
+      assert ONE_PAIR == hand.ofAKind()
    }
 
 }
