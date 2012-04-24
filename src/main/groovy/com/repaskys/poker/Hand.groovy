@@ -11,6 +11,12 @@ class Hand extends ArrayList<Card> {
       return (this*.suit as Set).size() == 1
    }
 
+   boolean isStraight() {
+      def ranks = this*.rank
+      ranks.sort()
+      (ranks.last() - ranks.first() == 4) ? true : false
+   }
+
    /**
     * Group any cards that have the same face value, which is used to determine pairs.
     * Entries in the map have a key with the face value of the card and a value containing the amount of matches.
@@ -28,10 +34,7 @@ class Hand extends ArrayList<Card> {
 
       this.each{ card ->
          def value = card.value
-         def matches = likeCards[value]
-         if(matches == null) {
-            matches = 0
-         }
+         def matches = likeCards[value] ?: 0
          likeCards[value] = matches + 1
       }
 

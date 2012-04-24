@@ -20,6 +20,16 @@ class HandTest extends GroovyTestCase {
       assert ! hand.isFlush()
    }
 
+   void testStraight() {
+      def hand = [D."2C", D."3C", D."4C", D."5C", D."6D"] as Hand
+      assert hand.isStraight()
+   }
+
+   void testNotStraight() {
+      def hand = [D."2C", D."3C", D."4C", D."5C", D."7D"] as Hand
+      assert ! hand.isStraight()
+   }
+
    void testGroupLikeCardsNoPairs() {
       def hand = [D."2C", D."3C", D."4C", D."5C", D."8D"] as Hand
       assert ["2":1, "3":1, "4":1, "5":1, "8":1] == hand.groupLikeCards()
