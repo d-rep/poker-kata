@@ -3,7 +3,7 @@ package com.repaskys.poker
 import groovy.util.GroovyTestCase
 
 import static com.repaskys.poker.Card.DECK as D
-import static com.repaskys.poker.Pairs.*
+import static com.repaskys.poker.Ranks.*
 
 import com.repaskys.poker.Hand
 import com.repaskys.poker.Suit

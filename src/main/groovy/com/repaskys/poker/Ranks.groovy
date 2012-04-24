@@ -1,6 +1,6 @@
 package com.repaskys.poker
 
-enum Pairs {
+enum Ranks {
    FOUR_OF_A_KIND,
    FULL_HOUSE,
    THREE_OF_A_KIND,

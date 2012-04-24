@@ -1,6 +1,6 @@
 package com.repaskys.poker
 
-import static com.repaskys.poker.Pairs.*
+import static com.repaskys.poker.Ranks.*
 
 @Immutable
 class Hand extends ArrayList<Card> {
@@ -44,7 +44,7 @@ class Hand extends ArrayList<Card> {
    /**
     * Determine if the hand contains any of the same ranking cards.
     */
-   Pairs ofAKind() {
+   Ranks ofAKind() {
       def likeCards = groupLikeCards()
       def pairs = null
       def size = likeCards.values().size()
