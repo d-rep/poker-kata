@@ -10,79 +10,72 @@ import com.repaskys.poker.Suit
 
 class HandTest extends GroovyTestCase {
 
+   def handFlush = [D."2C", D."3C", D."4C", D."5C", D."8C"] as Hand
+   def handStraight = [D."2C", D."3C", D."4C", D."5C", D."6D"] as Hand
+   def handFourOfAKind = [D."2C", D."2S", D."2D", D."2H", D."8D"] as Hand
+   def handFullHouse = [D."2C", D."2S", D."3D", D."3H", D."3D"] as Hand
+   def handThreeOfAKind = [D."2C", D."2S", D."2D", D."3H", D."8D"] as Hand
+   def handTwoPairs = [D."2C", D."2S", D."3D", D."3H", D."8D"] as Hand
+   def handOnePair = [D."2C", D."2S", D."3D", D."4H", D."8D"] as Hand
+
    void testFlush() {
-      def hand = [D."2C", D."3C", D."4C", D."5C", D."8C"] as Hand
-      assert hand.isFlush()
+      assert handFlush.isFlush()
    }
 
    void testNotFlush() {
-      def hand = [D."2C", D."3C", D."4C", D."5C", D."8D"] as Hand
-      assert ! hand.isFlush()
+      assert ! handStraight.isFlush()
    }
 
    void testStraight() {
-      def hand = [D."2C", D."3C", D."4C", D."5C", D."6D"] as Hand
-      assert hand.isStraight()
+      assert handStraight.isStraight()
    }
 
    void testNotStraight() {
-      def hand = [D."2C", D."3C", D."4C", D."5C", D."7D"] as Hand
-      assert ! hand.isStraight()
+      assert ! handFlush.isStraight()
    }
 
    void testGroupLikeCardsNoPairs() {
-      def hand = [D."2C", D."3C", D."4C", D."5C", D."8D"] as Hand
-      assert ["2":1, "3":1, "4":1, "5":1, "8":1] == hand.groupLikeCards()
+      assert ["2":1, "3":1, "4":1, "5":1, "8":1] == handFlush.groupLikeCards()
    }
 
    void testGroupLikeCardsFourOfAKind() {
-      def hand = [D."2C", D."2S", D."2D", D."2H", D."8D"] as Hand
-      assert ["2":4, "8":1] == hand.groupLikeCards()
+      assert ["2":4, "8":1] == handFourOfAKind.groupLikeCards()
    }
 
    void testGroupLikeCardsThreeOfAKind() {
-      def hand = [D."2C", D."2S", D."2D", D."3H", D."8D"] as Hand
-      assert ["2":3, "3":1, "8":1] == hand.groupLikeCards()
+      assert ["2":3, "3":1, "8":1] == handThreeOfAKind.groupLikeCards()
    }
 
    void testGroupLikeCardsTwoPairs() {
-      def hand = [D."2C", D."2S", D."3D", D."3H", D."8D"] as Hand
-      assert ["2":2, "3":2, "8":1] == hand.groupLikeCards()
+      assert ["2":2, "3":2, "8":1] == handTwoPairs.groupLikeCards()
    }
 
    void testGroupLikeCardsOnePair() {
-      def hand = [D."2C", D."2S", D."3D", D."4H", D."8D"] as Hand
-      assert ["2":2, "3":1, "4":1, "8":1] == hand.groupLikeCards()
+      assert ["2":2, "3":1, "4":1, "8":1] == handOnePair.groupLikeCards()
    }
 
    void testNoMatchingCardsOfAKind() {
-      def hand = [D."2C", D."3C", D."4C", D."5C", D."8D"] as Hand
-      assert NO_PAIRS == hand.ofAKind()
+      assert NO_PAIRS == handFlush.ofAKind()
    }
 
    void testFourOfAKind() {
-      def hand = [D."2C", D."2S", D."2D", D."2H", D."8D"] as Hand
-      assert FOUR_OF_A_KIND == hand.ofAKind()
+      assert FOUR_OF_A_KIND == handFourOfAKind.ofAKind()
    }
 
    void testFullHouse() {
-      def hand = [D."2C", D."2S", D."3D", D."3H", D."3D"] as Hand
-      assert FULL_HOUSE == hand.ofAKind()
+      assert FULL_HOUSE == handFullHouse.ofAKind()
    }
 
    void testThreeOfAKind() {
-      def hand = [D."2C", D."2S", D."2D", D."3H", D."8D"] as Hand
-      assert THREE_OF_A_KIND == hand.ofAKind()
+      assert THREE_OF_A_KIND == handThreeOfAKind.ofAKind()
    }
 
    void testTwoPairs() {
-      def hand = [D."2C", D."2S", D."3D", D."3H", D."8D"] as Hand
-      assert TWO_PAIRS == hand.ofAKind()
+      assert TWO_PAIRS == handTwoPairs.ofAKind()
    }
 
    void testOnePair() {
-      def hand = [D."2C", D."2S", D."3D", D."4H", D."8D"] as Hand
-      assert ONE_PAIR == hand.ofAKind()
+      assert ONE_PAIR == handOnePair.ofAKind()
    }
 
 }
