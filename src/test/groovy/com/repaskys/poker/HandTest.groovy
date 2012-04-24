@@ -10,6 +10,7 @@ import com.repaskys.poker.Suit
 
 class HandTest extends GroovyTestCase {
 
+   def handStraightFlush = [D."9C", D."TC", D."JC", D."QC", D."KC"] as Hand
    def handFlush = [D."2C", D."3C", D."4C", D."5C", D."8C"] as Hand
    def handStraight = [D."2C", D."3C", D."4C", D."5C", D."6D"] as Hand
    def handFourOfAKind = [D."2C", D."2S", D."2D", D."2H", D."8D"] as Hand
@@ -17,6 +18,7 @@ class HandTest extends GroovyTestCase {
    def handThreeOfAKind = [D."2C", D."2S", D."2D", D."3H", D."8D"] as Hand
    def handTwoPairs = [D."2C", D."2S", D."3D", D."3H", D."8D"] as Hand
    def handOnePair = [D."2C", D."2S", D."3D", D."4H", D."8D"] as Hand
+   def handHighCard = [D."2C", D."3S", D."4D", D."6H", D."8D"] as Hand
 
    void testFlush() {
       assert handFlush.isFlush()
@@ -76,6 +78,42 @@ class HandTest extends GroovyTestCase {
 
    void testOnePair() {
       assert ONE_PAIR == handOnePair.ofAKind()
+   }
+
+   void testRankHighCard() {
+      assert HIGH_CARD == handHighCard.rank
+   }
+
+   void testRankOnePair() {
+      assert ONE_PAIR == handOnePair.rank
+   }
+
+   void testRankTwoPairs() {
+      assert TWO_PAIRS == handTwoPairs.rank
+   }
+
+   void testRankThreeOfAKind() {
+      assert THREE_OF_A_KIND == handThreeOfAKind.rank
+   }
+
+   void testRankStraight() {
+      assert STRAIGHT == handStraight.rank
+   }
+
+   void testRankFlush() {
+      assert FLUSH == handFlush.rank
+   }
+
+   void testRankFullHouse() {
+      assert FULL_HOUSE == handFullHouse.rank
+   }
+
+   void testRankFourOfAKind() {
+      assert FOUR_OF_A_KIND == handFourOfAKind.rank
+   }
+
+   void testRankStraightFlush() {
+      assert STRAIGHT_FLUSH == handStraightFlush.rank
    }
 
 }

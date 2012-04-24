@@ -72,4 +72,25 @@ class Hand extends ArrayList<Card> {
       }
       return pairs
    }
+
+   Ranks getRank() {
+      def rank = ofAKind()
+
+      if(rank == NO_PAIRS) {
+         def flush = isFlush()
+         def straight = isStraight()
+
+         if(flush && straight) {
+            rank = STRAIGHT_FLUSH
+         } else if(flush) {
+            rank = FLUSH
+         } else if(straight) {
+            rank = STRAIGHT
+         } else {
+            rank = HIGH_CARD
+         }
+      }
+
+      return rank
+   }
 }
