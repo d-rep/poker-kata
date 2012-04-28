@@ -14,10 +14,10 @@ class Player {
       cardAbbrs.collect{ Card.create(it) } as Hand
    }
 
-   static Player createPlayer(String playerLine) {
+   public static Player create(String playerLine) {
       def split = playerLine.split(" ")
       def playerName = split[0].replace(':', '')
       Hand playerHand = Player.getHand(split[1..5])
-      new Player(name: playerName, hand: playerHand)
+      return new Player(name: playerName, hand: playerHand)
    }
 }
