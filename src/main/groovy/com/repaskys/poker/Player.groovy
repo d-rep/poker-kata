@@ -16,7 +16,8 @@ class Player {
 
    static Player createPlayer(String playerLine) {
       def split = playerLine.split(" ")
+      def playerName = split[0].replace(':', '')
       Hand playerHand = Player.getHand(split[1..5])
-      new Player(name: split[0], hand: playerHand)
+      new Player(name: playerName, hand: playerHand)
    }
 }
