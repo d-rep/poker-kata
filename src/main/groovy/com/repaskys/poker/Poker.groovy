@@ -11,8 +11,8 @@ class Poker {
 
    public static Poker create(String line) {
       def split = line.split("  ")
-      def pokerPlayer1 = Player.create(split[0])
-      def pokerPlayer2 = Player.create(split[1])
+      Player pokerPlayer1 = Player.create(split[0])
+      Player pokerPlayer2 = Player.create(split[1])
       return new Poker(player1: pokerPlayer1, player2: pokerPlayer2)
    }
 }
