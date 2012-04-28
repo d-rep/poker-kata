@@ -15,4 +15,15 @@ class Poker {
       Player pokerPlayer2 = Player.create(split[1])
       return new Poker(player1: pokerPlayer1, player2: pokerPlayer2)
    }
+
+   public String getWinner() {
+      // FIXME should have a tie-breaker of high-card
+      String winner = "Tie."
+      if(player1.hand.rank > player2.hand.rank) {
+         winner = "${player1.name} wins."
+      } else if(player1.hand.rank < player2.hand.rank) {
+         winner = "${player2.name} wins."
+      }
+      return winner
+   }
 }
