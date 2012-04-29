@@ -2,7 +2,6 @@ package com.repaskys.poker
 
 import com.repaskys.poker.Card
 import com.repaskys.poker.Hand
-
 import com.repaskys.poker.Player
 
 class Poker {
@@ -18,11 +17,15 @@ class Poker {
 
    public String getWinner() {
       // FIXME should have a tie-breaker of high-card
-      String winner = "Tie."
-      if(player1.hand.rank > player2.hand.rank) {
-         winner = "${player1.name} wins."
-      } else if(player1.hand.rank < player2.hand.rank) {
-         winner = "${player2.name} wins."
+      String winner = "Tie"
+
+      def hand1 = player1.hand
+      def hand2 = player2.hand
+
+      if(hand1.rank > hand2.rank) {
+         winner = "${player1.name} wins with ${hand1.rank.text}"
+      } else if(hand1.rank < hand2.rank) {
+         winner = "${player2.name} wins with ${hand2.rank.text}"
       }
       return winner
    }
