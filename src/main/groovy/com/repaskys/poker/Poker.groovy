@@ -15,16 +15,18 @@ class Poker {
       return new Poker(player1: pokerPlayer1, player2: pokerPlayer2)
    }
 
-   public String getWinner() {
-      String winner = "Tie"
+   def winnerText(Player player) {
+      "${player.name} wins with ${player.hand.rank.text}"
+   }
 
+   public String getWinner() {
+      def winner = "Tie"
       def hand1 = player1.hand
       def hand2 = player2.hand
-
       if(hand1 > hand2) {
-         winner = "${player1.name} wins with ${hand1.rank.text}"
+         winner = winnerText(player1)
       } else if(hand1 < hand2) {
-         winner = "${player2.name} wins with ${hand2.rank.text}"
+         winner = winnerText(player2)
       }
       return winner
    }
