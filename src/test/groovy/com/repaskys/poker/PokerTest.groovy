@@ -28,4 +28,19 @@ class PokerTest extends GroovyTestCase {
       assert "Tie" == poker.winner
    }
 
+   void testWithFile() {
+      def input = []
+      def expectedOutput = []
+      new File("src/test/resources/input.txt").eachLine{ line ->
+         input.add(line)
+      }
+      new File("src/test/resources/output.txt").eachLine{ line ->
+         expectedOutput.add(line)
+      }
+      int index = 0
+      input.each{
+         def poker = Poker.create(it)
+         assert expectedOutput[index++] == poker.winner
+      }
+   }
 }
