@@ -36,6 +36,19 @@ class CardTest extends GroovyTestCase {
       assert deuceOfHearts.rank < nineOfClubs.rank
    }
 
+   void testCardCompareDeuceIsLessThanAce() {
+      assert deuceOfHearts < aceOfSpades
+   }
+
+   void testCardCompareDeuceIsLessThanNine() {
+      assert deuceOfHearts < nineOfClubs
+   }
+
+   void testCardSort() {
+      def cards = [aceOfSpades, deuceOfHearts, nineOfClubs]
+      assert [deuceOfHearts, nineOfClubs, aceOfSpades] == cards.sort()
+   }
+
    void testFaceValueIsNine() {
       assert nineOfClubs.value == "9"
    }
@@ -59,4 +72,5 @@ class CardTest extends GroovyTestCase {
    void testDeckNineOfClubs() {
       assert deck.get("9C") == nineOfClubs
    }
+
 }

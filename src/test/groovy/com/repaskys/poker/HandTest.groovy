@@ -18,7 +18,9 @@ class HandTest extends GroovyTestCase {
    def handThreeOfAKind = [D."2C", D."2S", D."2D", D."3H", D."8D"] as Hand
    def handTwoPairs = [D."2C", D."2S", D."3D", D."3H", D."8D"] as Hand
    def handOnePair = [D."2C", D."2S", D."3D", D."4H", D."8D"] as Hand
-   def handHighCard = [D."2C", D."3S", D."4D", D."6H", D."8D"] as Hand
+   def handHighCardEight = [D."2C", D."3S", D."4D", D."6H", D."8D"] as Hand
+   def handHighCardEightDifferentSuits = [D."2D", D."3C", D."4S", D."6D", D."8S"] as Hand
+   def handHighCardKing = [D."2C", D."3S", D."4D", D."6H", D."KD"] as Hand
 
    void testFlush() {
       assert handFlush.isFlush()
@@ -81,7 +83,7 @@ class HandTest extends GroovyTestCase {
    }
 
    void testRankHighCard() {
-      assert HIGH_CARD == handHighCard.rank
+      assert HIGH_CARD == handHighCardEight.rank
    }
 
    void testRankOnePair() {
@@ -115,5 +117,31 @@ class HandTest extends GroovyTestCase {
    void testRankStraightFlush() {
       assert STRAIGHT_FLUSH == handStraightFlush.rank
    }
+
+   void compareTie() {
+      assert handHighCardEight == handHighCardEightDifferentSuits
+      assert handHighCardEight.highCard == null
+   }
+
+   void compareHighCardLeftWins() {
+      assert handHighCardAce > handHighCardEight
+      assert handHighCardAce.highCard == "A"
+   }
+
+   void compareHighCardRightWins() {
+      assert handHighCardEight < handHighCardAce
+      assert handHighCardAce.highCard == "A"
+   }
+
+   void testHandOrderDoesntMatter() {
+      def handStraightFlushScrambled = [D."QC", D."JC", D."KC", D."9C", D."TC"] as Hand
+      assert STRAIGHT_FLUSH == handStraightFlushScrambled.rank
+   }
+
+   void testHandSortedByRank() {
+      def handStraightFlushScrambled = [D."QC", D."JC", D."KC", D."9C", D."TC"] as Hand
+      assert handStraightFlush == handStraightFlushScrambled.sort()
+   }
+
 
 }

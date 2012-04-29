@@ -3,7 +3,7 @@ package com.repaskys.poker
 import com.repaskys.poker.Suit
 
 @Immutable
-class Card {
+class Card implements Comparable<Hand> {
 
    private static final List<String> CARD_VALUES = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]
 
@@ -23,7 +23,7 @@ class Card {
    }
 
    /**
-    * This is the face value of the card. 2-9, T for a "Ten", J for "Jack", Q for "Queen", K for "King", and A for "Ace."
+    * This is 1-character representing the face value of the card. 2-9, T for a "Ten", J for "Jack", Q for "Queen", K for "King", and A for "Ace."
     */
    String value
 
@@ -40,5 +40,15 @@ class Card {
     */
    public static Card create(String abbr) {
       return new Card(value: abbr[0], suit: abbr[1], rank: CARD_VALUES.indexOf(abbr[0]))
+   }
+
+   public int compareTo(otherCard) {
+      int val = 0
+      if(this.rank > otherCard.rank) {
+         val = 1
+      } else if(this.rank < otherCard.rank) {
+         val = -1
+      }
+      val
    }
 }

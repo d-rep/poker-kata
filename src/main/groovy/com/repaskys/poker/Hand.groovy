@@ -2,8 +2,9 @@ package com.repaskys.poker
 
 import static com.repaskys.poker.Ranks.*
 
-@Immutable
 class Hand extends ArrayList<Card> implements Comparable<Hand> {
+
+   String highCard
 
    boolean isFlush() {
       // Get the "suit" property of every item, put it in a Set to ensure we only
@@ -94,14 +95,34 @@ class Hand extends ArrayList<Card> implements Comparable<Hand> {
       return rank
    }
 
-   int compareTo(Hand hand) {
+   int compareTo(Hand otherHand) {
+      // default is a tie
       int val = 0
-      if(this.rank > hand.rank) {
+
+      if(this.rank > otherHand.rank) {
          val = 1
-      } else if(this.rank < hand.rank) {
+      } else if(this.rank < otherHand.rank) {
          val = -1
-      } else if(this.rank == hand.rank) {
-         val = 0
+      } else if(this.rank == otherHand.rank) {
+         // both hands have the same ranking, so compare each card's face value
+         // and reverse the sorted order, so that the highest card is first
+         def handReversed = this.sort().reverse()
+         def otherHandRevered = otherHand.sort().reverse()
+
+         for(int i = 0; i < this.size(); i++) {
+            def card = handReversed[i]
+            def otherCard = otherHandRevered[i]
+
+            if(card.rank > otherCard.rank) {
+               this.highCard = card.value
+               val = 1
+               break
+            } else if(card.rank < otherCard.rank) {
+               this.highCard = otherCard.value
+               val = -1
+               break
+            }
+         }
       }
       val
    }

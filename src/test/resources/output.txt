@@ -1,2 +1,4 @@
+White wins with high card
 Black wins with a full house
+Black wins with high card
 Tie

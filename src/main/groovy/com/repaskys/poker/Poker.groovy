@@ -16,7 +16,6 @@ class Poker {
    }
 
    public String getWinner() {
-      // FIXME should have a tie-breaker of high-card
       String winner = "Tie"
 
       def hand1 = player1.hand
