@@ -3,7 +3,7 @@ package com.repaskys.poker
 import static com.repaskys.poker.Ranks.*
 
 @Immutable
-class Hand extends ArrayList<Card> {
+class Hand extends ArrayList<Card> implements Comparable<Hand> {
 
    boolean isFlush() {
       // Get the "suit" property of every item, put it in a Set to ensure we only
@@ -92,5 +92,17 @@ class Hand extends ArrayList<Card> {
       }
 
       return rank
+   }
+
+   int compareTo(Hand hand) {
+      int val = 0
+      if(this.rank > hand.rank) {
+         val = 1
+      } else if(this.rank < hand.rank) {
+         val = -1
+      } else if(this.rank == hand.rank) {
+         val = 0
+      }
+      val
    }
 }

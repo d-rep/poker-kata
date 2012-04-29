@@ -22,9 +22,9 @@ class Poker {
       def hand1 = player1.hand
       def hand2 = player2.hand
 
-      if(hand1.rank > hand2.rank) {
+      if(hand1 > hand2) {
          winner = "${player1.name} wins with ${hand1.rank.text}"
-      } else if(hand1.rank < hand2.rank) {
+      } else if(hand1 < hand2) {
          winner = "${player2.name} wins with ${hand2.rank.text}"
       }
       return winner
