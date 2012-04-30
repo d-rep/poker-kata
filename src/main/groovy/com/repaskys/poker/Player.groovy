@@ -5,7 +5,6 @@ import static com.repaskys.poker.Ranks.*
 import com.repaskys.poker.Card
 import com.repaskys.poker.Hand
 
-@Immutable
 class Player {
    String name
    Hand hand

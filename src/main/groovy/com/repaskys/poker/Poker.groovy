@@ -4,6 +4,8 @@ import com.repaskys.poker.Card
 import com.repaskys.poker.Hand
 import com.repaskys.poker.Player
 
+import static com.repaskys.poker.Ranks.*
+
 class Poker {
    Player player1
    Player player2
@@ -16,16 +18,17 @@ class Poker {
    }
 
    def winnerText(Player player) {
-      "${player.name} wins with ${player.hand.rank.text}"
+      def rank = player.hand.rank
+      def highCard = player.hand.highCard
+      String tieBreaker = (HIGH_CARD == rank && highCard != null) ? " ${highCard}" : ""
+      "${player.name} wins with ${rank.text}${tieBreaker}"
    }
 
    public String getWinner() {
       def winner = "Tie"
-      def hand1 = player1.hand
-      def hand2 = player2.hand
-      if(hand1 > hand2) {
+      if(player1.hand > player2.hand) {
          winner = winnerText(player1)
-      } else if(hand1 < hand2) {
+      } else if(player1.hand < player2.hand) {
          winner = winnerText(player2)
       }
       return winner

@@ -1,4 +1,4 @@
-White wins with high card
+White wins with high card A
 Black wins with a full house
-Black wins with high card
+Black wins with high card 9
 Tie

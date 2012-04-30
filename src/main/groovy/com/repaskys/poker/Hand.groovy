@@ -113,12 +113,13 @@ class Hand extends ArrayList<Card> implements Comparable<Hand> {
             def card = handReversed[i]
             def otherCard = otherHandRevered[i]
 
+            // FIXME mutating the class when doing the comparison
             if(card.rank > otherCard.rank) {
                this.highCard = card.value
                val = 1
                break
             } else if(card.rank < otherCard.rank) {
-               this.highCard = otherCard.value
+               otherHand.highCard = otherCard.value
                val = -1
                break
             }

@@ -28,6 +28,13 @@ class PokerTest extends GroovyTestCase {
       assert "Tie" == poker.winner
    }
 
+   void testLeftBeatsRightWithHighCard() {
+      def poker = Poker.create("Left: 7H 8H 9C QD KH  Right: 7S 8S 9S TH KD")
+      assert poker.player1.hand.rank == HIGH_CARD
+      assert poker.player2.hand.rank == HIGH_CARD
+      assert "Left wins with high card Q" == poker.winner
+   }
+
    void testWithFile() {
       def input = []
       def expectedOutput = []
