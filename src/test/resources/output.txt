@@ -4,3 +4,4 @@ Black wins with high card 9
 Tie
 Tie
 White wins with four of a kind
+White wins with one pair

@@ -35,6 +35,27 @@ class PokerTest extends GroovyTestCase {
       assert "Left wins with high card Q" == poker.winner
    }
 
+   void testLeftTiesRightWithEqualPair() {
+      def poker = Poker.create("Left: 7H 8H 9C KD KH  Right: 7S 8S 9S KC KS")
+      assert poker.player1.hand.rank == ONE_PAIR
+      assert poker.player2.hand.rank == ONE_PAIR
+      assert "Tie" == poker.winner
+   }
+
+   void testHigherPairWins() {
+      def poker = Poker.create("Left: 7H 8H 9C KD KH  Right: 7S 8S TS QC QS")
+      assert poker.player1.hand.rank == ONE_PAIR
+      assert poker.player2.hand.rank == ONE_PAIR
+      assert "Left wins with one pair" == poker.winner
+   }
+
+   void testSameRankedPairHasTieBreakerHighCard() {
+      def poker = Poker.create("Left: 7H 8H 9C KD KH  Right: 7S 8S TS KC KS")
+      assert poker.player1.hand.rank == ONE_PAIR
+      assert poker.player2.hand.rank == ONE_PAIR
+      assert "Right wins with one pair" == poker.winner
+   }
+
    void testWithFile() {
       def input = []
       def expectedOutput = []
